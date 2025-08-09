@@ -5,11 +5,14 @@ A complete hands-on lab for learning SQL injection exploitation and detection us
 ## What You'll Build
 
 By the end of this lab, you'll have:
+
 - A vulnerable PHP application for testing SQL injection techniques
 - OWASP Juice Shop running on Minikube with full observability
 - Falco monitoring syscalls, Zeek parsing network traffic
 - Centralized logging with Fluent Bit and Loki
 - Cross-platform detection rules using Sigma
+
+![](./mermaid-diagram-2025-07-20-124045.png)
 
 ## Lab Architecture
 
@@ -49,6 +52,7 @@ By the end of this lab, you'll have:
 ## Quick Start
 
 ### Part 1: Basic SQL Injection Lab
+
 ```bash
 # Start the PHP/MySQL environment
 cd basic-lab
@@ -59,6 +63,7 @@ curl "http://127.0.0.1:8080/login.php?user=%27%20OR%201=1%20--%20&pass=irrelevan
 ```
 
 ### Part 2: Kubernetes Detection Pipeline
+
 ```bash
 # Deploy Juice Shop and monitoring stack
 minikube start
@@ -72,6 +77,7 @@ helm install loki grafana/loki-stack --values loki-stack-values.yaml
 ```
 
 ### Part 3: Sigma Detection Rules
+
 ```bash
 # Install Sigma and convert rules
 pip install pysigma pysigma-backend-loki
