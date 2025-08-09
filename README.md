@@ -1,6 +1,6 @@
 # SQL Injection Detection Lab
 
-![CI](https://github.com/colossus06/sigma-soc-detection-lab/actions/workflows/ci.yaml/badge.svg)
+[![build-sigma](https://github.com/colossus06/sigma-soc-detection-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/colossus06/sigma-soc-detection-lab/actions/workflows/ci.yml)
 
 A complete hands-on lab for learning SQL injection exploitation and detection using modern security tools. This repository accompanies a three-part article series that takes you from basic PHP exploitation to enterprise-grade detection with Sigma rules on Kubernetes.
 
@@ -14,7 +14,7 @@ By the end of this lab, you'll have:
 - Centralized logging with Fluent Bit and Loki
 - Cross-platform detection rules using Sigma
 
-![](./mermaid-diagram-2025-07-20-124045.png)
+![](./mermaid-diagram-2025-08-09-213514.png)
 
 ## Lab Architecture
 
