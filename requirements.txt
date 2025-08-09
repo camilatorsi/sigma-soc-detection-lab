@@ -1,3 +1,4 @@
-pysigma==0.11.9
-pysigma-backend-elasticsearch==0.11.1
-pysigma-backend-loki==0.11.0
+sigma-cli
+pysigma
+pysigma-backend-elasticsearch>=1.1.0
+pysigma-backend-loki>=1.1.0

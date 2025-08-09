@@ -29,10 +29,9 @@ jobs:
           mkdir -p build/lucene
           for f in detections/*.yml detections/*.yaml; do
             [ -e "$f" ] || continue
-            base=$(basename "$f" .yml); base=${base%.yaml}
-            sigma convert -t lucene -p ecs_zeek_beats "$f" > "build/lucene/${base}.lucene" || exit 1
+            base=$(basename "$f"); base="${base%.*}"
+            sigma convert -t lucene "$f" > "build/lucene/${base}.lucene"
           done
-          echo "Lucene build complete."
 
       - name: Compile to Loki (LogQL)
         run: |
@@ -40,10 +39,9 @@ jobs:
           mkdir -p build/loki
           for f in detections/*.yml detections/*.yaml; do
             [ -e "$f" ] || continue
-            base=$(basename "$f" .yml); base=${base%.yaml}
-            sigma convert -t loki "$f" > "build/loki/${base}.logql" || exit 1
+            base=$(basename "$f"); base="${base%.*}"
+            sigma convert -t loki "$f" > "build/loki/${base}.logql"
           done
-          echo "LogQL build complete."
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
