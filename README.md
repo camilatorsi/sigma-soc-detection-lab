@@ -1,6 +1,6 @@
 # SQL Injection Detection Lab
 
-![CI](https://github.com/USERNAME/REPOSITORY/workflows/WORKFLOW_NAME/badge.svg)
+![CI](https://github.com/colossus06/sigma-soc-detection-lab/actions/workflows/ci.yaml/badge.svg)
 
 A complete hands-on lab for learning SQL injection exploitation and detection using modern security tools. This repository accompanies a three-part article series that takes you from basic PHP exploitation to enterprise-grade detection with Sigma rules on Kubernetes.
 
