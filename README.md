@@ -1,5 +1,7 @@
 # SQL Injection Detection Lab
 
+![CI](https://github.com/USERNAME/REPOSITORY/workflows/WORKFLOW_NAME/badge.svg)
+
 A complete hands-on lab for learning SQL injection exploitation and detection using modern security tools. This repository accompanies a three-part article series that takes you from basic PHP exploitation to enterprise-grade detection with Sigma rules on Kubernetes.
 
 ## What You'll Build
@@ -48,52 +50,6 @@ By the end of this lab, you'll have:
 - Helm 3.x
 - curl for testing
 - Python 3.8+ with pip (for Sigma)
-
-## Quick Start
-
-### Part 1: Basic SQL Injection Lab
-
-```bash
-# Start the PHP/MySQL environment
-cd basic-lab
-docker-compose up -d
-
-# Test authentication bypass
-curl "http://127.0.0.1:8080/login.php?user=%27%20OR%201=1%20--%20&pass=irrelevant"
-```
-
-### Part 2: Kubernetes Detection Pipeline
-
-```bash
-# Deploy Juice Shop and monitoring stack
-minikube start
-kubectl apply -f juice-shop.yaml
-helm install falco falcosecurity/falco --values falco-values.yaml
-kubectl apply -f zeek-daemonset.yaml
-
-# Set up log aggregation
-helm install fluent-bit fluent/fluent-bit
-helm install loki grafana/loki-stack --values loki-stack-values.yaml
-```
-
-### Part 3: Sigma Detection Rules
-
-```bash
-# Install Sigma and convert rules
-pip install pysigma pysigma-backend-loki
-sigma convert -t loki sigma-sqli-detection-pipeline.yaml
-
-# Test detection
-curl "http://$(minikube ip):30602/rest/products/search?q=test' OR 1=1--"
-```
-
-## Repository Structure
-
-- `basic-lab/` - Docker-based PHP/MySQL environment for Part 1
-- `k8s-manifests/` - Kubernetes deployments for Part 2
-- `sigma-rules/` - Detection rules and configurations for Part 3
-- `tests/` - Validation scripts and payload samples
-- `docs/` - Detailed setup guides and troubleshooting
 
 ## Learning Path
 
