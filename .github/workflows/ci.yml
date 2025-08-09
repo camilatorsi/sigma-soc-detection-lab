@@ -1,0 +1,52 @@
+name: build-sigma
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          python -m venv .venv
+          . .venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Compile to Elasticsearch (Lucene)
+        run: |
+          . .venv/bin/activate
+          mkdir -p build/lucene
+          for f in detections/*.yml detections/*.yaml; do
+            [ -e "$f" ] || continue
+            base=$(basename "$f" .yml); base=${base%.yaml}
+            sigma convert -t lucene -p ecs_zeek_beats "$f" > "build/lucene/${base}.lucene" || exit 1
+          done
+          echo "Lucene build complete."
+
+      - name: Compile to Loki (LogQL)
+        run: |
+          . .venv/bin/activate
+          mkdir -p build/loki
+          for f in detections/*.yml detections/*.yaml; do
+            [ -e "$f" ] || continue
+            base=$(basename "$f" .yml); base=${base%.yaml}
+            sigma convert -t loki "$f" > "build/loki/${base}.logql" || exit 1
+          done
+          echo "LogQL build complete."
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: sigma-build
+          path: build/
