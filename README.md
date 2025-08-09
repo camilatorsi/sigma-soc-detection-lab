@@ -2,6 +2,8 @@
 
 [![build-sigma](https://github.com/colossus06/sigma-soc-detection-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/colossus06/sigma-soc-detection-lab/actions/workflows/ci.yml)
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
 A complete hands-on lab for learning SQL injection exploitation and detection using modern security tools. This repository accompanies a three-part article series that takes you from basic PHP exploitation to enterprise-grade detection with Sigma rules on Kubernetes.
 
 ## What You'll Build
